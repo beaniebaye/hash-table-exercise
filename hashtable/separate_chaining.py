@@ -12,8 +12,15 @@ class SeparateChainingTable:
 
         # TODO: Try to insert into self.table
 
+
+        hash_key = hash(key) % len(self.table)
+
+        self.table[hash_key].append((key, value))
+
         # If successful, increment.
         self.size += 1
+
+        return 
 
     def get(self, key, default=None):
         """

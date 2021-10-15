@@ -11,9 +11,31 @@ class LinearProbingTable:
         """
 
         # TODO: Try to insert into self.table
+        
+        index = hash(key) % len(self.table)
+
+        #inserting into table
+
+        # if not self.table[start_index]:
+        #     self.table[start_index] = (key, value)
+        #     self.size += 1
+        #     return
+        
+
+        # index = (start_index + 1) % len(self.table)
+
+        while self.table[index]:
+            index = (index + 1) % len(self.table)
+
+        self.table[index] = (key, value)
+        self.size += 1
+        return
+
+
+
 
         # If successful, increment.
-        self.size += 1
+        # self.size += 1
 
     def get(self, key, default=None):
         """
@@ -29,7 +51,7 @@ class LinearProbingTable:
         current_key, value = self.table[index]
         if current_key == key:
             return value
-        index += 1 % len(self.table)
+        index = (index + 1) % len(self.table)
 
         while index != start_index and self.table[index]:
             current_key, value = self.table[index]
